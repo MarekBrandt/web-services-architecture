@@ -3,7 +3,10 @@ package pl.edu.pg.student.hospital;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl.edu.pg.student.hospital.person.entity.Name;
+import pl.edu.pg.student.hospital.person.entity.Patient;
 import pl.edu.pg.student.hospital.person.service.PatientService;
+import pl.edu.pg.student.hospital.ward.entity.Ward;
 import pl.edu.pg.student.hospital.ward.service.WardService;
 
 import java.util.Scanner;
@@ -12,6 +15,8 @@ import java.util.Scanner;
 public class CommandLine implements CommandLineRunner {
     private final PatientService patientService;
     private final WardService wardService;
+
+    Scanner scanner;
 
     @Autowired
     public CommandLine(PatientService patientService, WardService wardService) {
@@ -22,27 +27,28 @@ public class CommandLine implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         boolean shouldRun = true;
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
 
         while (shouldRun) {
             showMenu();
             String userResponse = scanner.nextLine();
-            
+
             switch (userResponse) {
                 case "1":
-                    patientService.findAll().stream().findAny().ifPresent(patient -> {
-                        String patientClass = patient.getClass().getName();
-                        System.out.println(patientClass.substring(patientClass.lastIndexOf(".")+1));
-                    });
-                    wardService.findAll().stream().findAny().ifPresent(ward -> System.out.println(ward.getClass()));
+                    showCategories();
                     break;
                 case "2":
-                    patientService.findAll().forEach(patient -> System.out.println(patient.toString()));
-                    wardService.findAll().forEach(ward -> System.out.println(ward.toString()));
+                    showAllElements();
                     break;
                 case "3":
+                    try {
+                        addElement();
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Adding element failed, try again");
+                    }
                     break;
                 case "4":
+                    deleteElement();
                     break;
                 case "5":
                     shouldRun = false;
@@ -50,6 +56,85 @@ public class CommandLine implements CommandLineRunner {
                 default:
                     System.out.println("Unexpected entry, try again");
             }
+        }
+        scanner.close();
+    }
+
+    private void showAllElements() {
+        patientService.findAll().forEach(patient -> System.out.println(patient.toString()));
+        wardService.findAll().forEach(ward -> System.out.println(ward.toString()));
+    }
+
+    private void showCategories() {
+        patientService.findAll().stream().findAny().ifPresent(patient -> System.out.println(patient.getClass().getSimpleName()));
+        wardService.findAll().stream().findAny().ifPresent(ward -> System.out.println(ward.getClass().getSimpleName()));
+    }
+
+    private void addElement() throws IllegalArgumentException {
+        System.out.println("Choose category:");
+        showCategories();
+        String chosenCategory = scanner.nextLine().toLowerCase();
+        switch (chosenCategory) {
+            case "patient":
+                System.out.println("First name: ");
+                String firstName = scanner.nextLine();
+                System.out.println("Last name: ");
+                String lastName = scanner.nextLine();
+                System.out.println("Age: ");
+                int age = Integer.parseInt(scanner.nextLine());
+                System.out.println("Pesel: ");
+                String pesel = scanner.nextLine();
+                System.out.println("Ward name");
+                String wardName = scanner.nextLine();
+
+                if (wardService.find(wardName).isEmpty() || pesel.isEmpty()) {
+                    throw new IllegalArgumentException();
+                }
+
+                patientService.save(Patient.builder()
+                        .name(new Name(firstName, lastName))
+                        .age(age)
+                        .pesel(pesel)
+                        .ward(wardService.find(wardName).get())
+                        .build());
+                break;
+            case "ward":
+                System.out.println("Ward name: ");
+                String ward = scanner.nextLine();
+                System.out.println("Number of beds: ");
+                int bedsNumber = Integer.parseInt(scanner.nextLine());
+                System.out.println("Area of ward in m^2: ");
+                float area = Float.parseFloat(scanner.nextLine());
+
+                wardService.save(Ward.builder()
+                        .name(ward)
+                        .areaInSquareMeters(area)
+                        .numberOfBeds(bedsNumber).build());
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+
+    private void deleteElement() {
+        System.out.println("Choose category:");
+        showCategories();
+        String chosenCategory = scanner.nextLine().toLowerCase();
+        switch (chosenCategory) {
+            case "patient":
+                System.out.println("Pesel: ");
+                String pesel = scanner.nextLine();
+
+                patientService.delete(patientService.find(pesel).orElseThrow(IllegalArgumentException::new));
+                break;
+            case "ward":
+                System.out.println("Ward name: ");
+                String ward = scanner.nextLine();
+
+                wardService.delete(wardService.find(ward).orElseThrow(IllegalArgumentException::new));
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
