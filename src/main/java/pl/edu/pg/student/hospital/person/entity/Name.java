@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 @Setter
 @Getter
-@Builder
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Name implements Serializable {

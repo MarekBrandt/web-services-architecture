@@ -44,18 +44,9 @@ public class DataInitializer {
             wardService.save(generalWard);
             wardService.save(causalityWard);
 
-            Name name1 = Name.builder()
-                    .firstName("Jan")
-                    .lastName("Kowalski")
-                    .build();
-            Name name2 = Name.builder()
-                    .firstName("Andrzej")
-                    .lastName("Drwalski")
-                    .build();
-            Name name3 = Name.builder()
-                    .firstName("Michał")
-                    .lastName("Mechaniczny")
-                    .build();
+            Name name1 = new Name("Jan", "Kowalski");
+            Name name2 = new Name("Andrzej", "Drwalski");
+            Name name3 = new Name("Michał", "Mechaniczny");
 
             Patient kowalski = Patient.builder()
                     .pesel("0123")
