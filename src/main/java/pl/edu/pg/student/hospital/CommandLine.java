@@ -48,7 +48,11 @@ public class CommandLine implements CommandLineRunner {
                     }
                     break;
                 case "4":
-                    deleteElement();
+                    try {
+                        deleteElement();
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Deleting element failed, try again");
+                    }
                     break;
                 case "5":
                     shouldRun = false;
