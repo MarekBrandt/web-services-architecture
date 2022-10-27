@@ -33,6 +33,11 @@ public class PatientService {
     }
 
     @Transactional
+    public void update(Patient patient) {
+        patientRepository.save(patient);
+    }
+
+    @Transactional
     public void delete(Patient patient) {
         patientRepository.delete(patient);
     }

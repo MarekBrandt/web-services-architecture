@@ -16,8 +16,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "patients")
 public class Patient implements Serializable {
-    String firstName;
-    String lastName;
+    private String firstName;
+    private String lastName;
     private int age;
     @Id
     private String pesel;
@@ -31,7 +31,7 @@ public class Patient implements Serializable {
                 "name=" + firstName + " " + lastName+
                 ", age=" + age +
                 ", pesel='" + pesel + '\'' +
-                ", ward=" + ward.getName() +
+                ", ward=" + (ward != null ? ward.getName() : "empty") +
                 '}';
     }
 }
