@@ -3,7 +3,6 @@ package pl.edu.pg.student.hospital;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.edu.pg.student.hospital.person.entity.Name;
 import pl.edu.pg.student.hospital.person.entity.Patient;
 import pl.edu.pg.student.hospital.person.service.PatientService;
 import pl.edu.pg.student.hospital.ward.entity.Ward;
@@ -96,7 +95,8 @@ public class CommandLine implements CommandLineRunner {
                 }
 
                 patientService.save(Patient.builder()
-                        .name(new Name(firstName, lastName))
+                        .firstName(firstName)
+                        .lastName(lastName)
                         .age(age)
                         .pesel(pesel)
                         .ward(wardService.find(wardName).get())

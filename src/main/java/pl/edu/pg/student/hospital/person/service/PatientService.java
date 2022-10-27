@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.edu.pg.student.hospital.person.entity.Patient;
 import pl.edu.pg.student.hospital.person.repository.PatientRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,17 +20,19 @@ public class PatientService {
     }
 
     public Optional<Patient> find(String pesel) {
-        return patientRepository.find(pesel);
+        return patientRepository.findById(pesel);
     }
 
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
 
+    @Transactional
     public void save(Patient patient) {
         patientRepository.save(patient);
     }
 
+    @Transactional
     public void delete(Patient patient) {
         patientRepository.delete(patient);
     }

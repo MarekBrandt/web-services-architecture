@@ -2,7 +2,6 @@ package pl.edu.pg.student.hospital.initialization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.edu.pg.student.hospital.person.entity.Name;
 import pl.edu.pg.student.hospital.person.entity.Patient;
 import pl.edu.pg.student.hospital.person.service.PatientService;
 import pl.edu.pg.student.hospital.ward.entity.Ward;
@@ -44,27 +43,26 @@ public class DataInitializer {
             wardService.save(generalWard);
             wardService.save(causalityWard);
 
-            Name name1 = new Name("Jan", "Kowalski");
-            Name name2 = new Name("Andrzej", "Drwalski");
-            Name name3 = new Name("Michał", "Mechaniczny");
-
             Patient kowalski = Patient.builder()
+                    .firstName("Jan")
+                    .lastName("Kowalski")
                     .pesel("0123")
                     .age(23)
                     .ward(maternityWard)
-                    .name(name2)
                     .build();
             Patient drwalski = Patient.builder()
+                    .firstName("Michał")
+                    .lastName("Mechaniczny")
                     .pesel("4567")
                     .age(47)
                     .ward(generalWard)
-                    .name(name1)
                     .build();
             Patient mechaniczny = Patient.builder()
+                    .firstName("Andrzej")
+                    .lastName("Drwalski")
                     .pesel("8910")
                     .age(33)
                     .ward(causalityWard)
-                    .name(name3)
                     .build();
 
             patientService.save(kowalski);
