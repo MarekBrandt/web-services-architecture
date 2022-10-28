@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import pl.edu.pg.student.hospital.person.service.PatientService;
 import pl.edu.pg.student.hospital.ward.dto.GetWardResponse;
 import pl.edu.pg.student.hospital.ward.dto.GetWardsResponse;
 import pl.edu.pg.student.hospital.ward.dto.PostWardRequest;
@@ -18,10 +19,13 @@ import java.util.Optional;
 public class WardController {
     private final WardService wardService;
 
+    private final PatientService patientService;
+
 
     @Autowired
-    public WardController(WardService wardService) {
+    public WardController(WardService wardService, PatientService patientService) {
         this.wardService = wardService;
+        this.patientService = patientService;
     }
 
     @GetMapping
@@ -64,8 +68,11 @@ public class WardController {
     public ResponseEntity<Void> deleteWard(@PathVariable("name") String name) {
         Optional<Ward> ward = wardService.find(name);
         if(ward.isPresent()) {
-            wardService.delete(ward.get());
-            return ResponseEntity.accepted().build();
+            if (patientService.findAll(ward.get()).isEmpty()) {
+                wardService.delete(ward.get());
+                return ResponseEntity.accepted().build();
+            }
+            return ResponseEntity.badRequest().build();
         }
         else {
             return ResponseEntity.notFound().build();

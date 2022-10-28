@@ -2,6 +2,7 @@ package pl.edu.pg.student.hospital.ward.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.edu.pg.student.hospital.person.repository.PatientRepository;
 import pl.edu.pg.student.hospital.ward.entity.Ward;
 import pl.edu.pg.student.hospital.ward.repository.WardRepository;
 
@@ -14,9 +15,12 @@ public class WardService {
 
     WardRepository wardRepository;
 
+    PatientRepository patientRepository;
+
     @Autowired
-    public WardService(WardRepository wardRepository) {
+    public WardService(WardRepository wardRepository, PatientRepository patientRepository) {
         this.wardRepository = wardRepository;
+        this.patientRepository = patientRepository;
     }
 
     public Optional<Ward> find(String name) {
