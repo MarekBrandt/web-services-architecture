@@ -16,7 +16,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "patients")
 public class Patient implements Serializable {
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
     private int age;
     @Id

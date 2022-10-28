@@ -69,4 +69,10 @@ DELETE localhost:8080/api/patients/0123
 ###
 DELETE localhost:8080/api/wards/general
 
+###
+GET localhost:8080/api/wards/general/patients
+
+###
+DELETE localhost:8080/api/wards/general/patients/4567
+
 
