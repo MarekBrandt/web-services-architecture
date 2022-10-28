@@ -6,7 +6,6 @@ import pl.edu.pg.student.hospital.ward.entity.Ward;
 import pl.edu.pg.student.hospital.ward.repository.WardRepository;
 
 import javax.transaction.Transactional;
-import java.awt.desktop.OpenFilesEvent;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +29,11 @@ public class WardService {
 
     @Transactional
     public void save(Ward ward) {
+        wardRepository.save(ward);
+    }
+
+    @Transactional
+    public void update(Ward ward) {
         wardRepository.save(ward);
     }
 
