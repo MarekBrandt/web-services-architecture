@@ -19,7 +19,7 @@ Accept: application/json
 ###
 
 
-GET http://localhost:8082/api/wards/maternity/patients
+GET http://localhost:8082/api/wards/surgical/patients
 Accept: application/json
 
 ###
@@ -41,9 +41,22 @@ DELETE localhost:8082/api/wards/maternity/patients/11111
 DELETE localhost:8082/api/patients/0123
 
 ###
-GET localhost:8082/api/wards/general/patients
+GET localhost:8082/api/wards/maternity230/patients
 
 ###
 DELETE localhost:8082/api/wards/general/patients/4567
+
+###
+
+DELETE localhost:8082/api/wards/general
+
+###
+
+POST localhost:8082/api/wards
+Content-Type: application/json
+
+{
+  "name": "maternity230"
+}
 
 

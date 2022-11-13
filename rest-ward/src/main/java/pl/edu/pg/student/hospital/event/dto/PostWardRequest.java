@@ -1,4 +1,4 @@
-package pl.edu.pg.student.hospital.ward.dto;
+package pl.edu.pg.student.hospital.event.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,13 +9,13 @@ import java.util.function.Function;
 
 @Getter
 @Setter
+@Builder
 public class PostWardRequest {
     private String name;
 
-    public static Function<PostWardRequest, Ward> dtoToEntityMapper() {
-        return request -> Ward.builder()
-                .name(request.getName())
+    public static Function<Ward, PostWardRequest> entityToDtoMapper() {
+        return ward -> PostWardRequest.builder()
+                .name(ward.getName())
                 .build();
     }
-
 }

@@ -9,11 +9,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
+@EqualsAndHashCode
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "wards")
 public class Ward implements Serializable {

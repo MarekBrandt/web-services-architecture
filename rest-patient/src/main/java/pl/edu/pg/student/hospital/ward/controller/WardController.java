@@ -11,10 +11,9 @@ import pl.edu.pg.student.hospital.ward.service.WardService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/wards")
+@RequestMapping("/api/wards")
 public class WardController {
     private final WardService wardService;
-
 
     @Autowired
     public WardController(WardService wardService) {

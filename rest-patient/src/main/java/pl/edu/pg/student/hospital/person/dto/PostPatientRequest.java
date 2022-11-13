@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 
 @Getter
 @Setter
-@Builder
 public class PostPatientRequest {
     private String pesel;
     private String firstName;
