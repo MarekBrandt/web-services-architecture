@@ -1,0 +1,78 @@
+POST http://localhost:8080/api/wards
+Content-Type: application/json
+
+{
+  "name": "surgical",
+  "numberOfBeds": 2,
+  "areaInSquareMeters": 100.0
+}
+
+###
+GET http://localhost:8080/api/wards/maternity
+Accept: application/json
+
+###
+GET http://localhost:8080/api/wards
+Accept: application/json
+
+###
+GET http://localhost:8080/api/patients/53542
+Accept: application/json
+
+###
+GET http://localhost:8080/api/patients
+Accept: application/json
+
+###
+POST http://localhost:8080/api/patients
+Content-Type: application/json
+
+{"pesel": "53542",
+  "firstName": "Borys",
+  "lastName": "Drwalski",
+  "age": 33,
+  "ward": "causality"
+}
+
+###
+
+GET http://localhost:8080/api/wards/maternity/patients
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/wards/maternity/patients
+Content-Type: application/json
+
+{"pesel": "11111",
+  "firstName": "Andrzej",
+  "lastName": "Litewski",
+  "age": 11,
+  "ward": "mater"
+}
+
+###
+DELETE localhost:8080/api/wards/maternity/patients/11111
+###
+
+PUT localhost:8080/api/wards/maternity
+Content-Type: application/json
+
+{
+  "numberOfBeds": 100,
+  "areaInSquareMeters": 300
+}
+
+###
+DELETE localhost:8080/api/patients/0123
+
+###
+DELETE localhost:8080/api/wards/general
+
+###
+GET localhost:8080/api/wards/general/patients
+
+###
+DELETE localhost:8080/api/wards/general/patients/4567
+
+
