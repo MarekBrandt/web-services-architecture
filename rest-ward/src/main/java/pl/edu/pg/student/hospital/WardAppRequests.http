@@ -1,0 +1,22 @@
+POST http://localhost:8081/api/wards
+Content-Type: application/json
+
+{
+  "name": "surgical",
+  "numberOfBeds": 2,
+  "areaInSquareMeters": 100.0
+}
+
+###
+GET http://localhost:8081/api/wards/maternity
+Accept: application/json
+
+###
+GET http://localhost:8081/api/wards
+Accept: application/json
+
+###
+
+DELETE localhost:8081/api/wards/maternity
+
+
