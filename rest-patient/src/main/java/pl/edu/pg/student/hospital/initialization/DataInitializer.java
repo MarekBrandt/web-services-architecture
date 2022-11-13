@@ -25,18 +25,12 @@ public class DataInitializer {
         if (patientService.find("0123").isEmpty()) {
             Ward maternityWard = Ward.builder()
                     .name("maternity")
-                    .numberOfBeds(10)
-                    .areaInSquareMeters(60f)
                     .build();
             Ward generalWard = Ward.builder()
                     .name("general")
-                    .numberOfBeds(20)
-                    .areaInSquareMeters(100f)
                     .build();
             Ward causalityWard = Ward.builder()
                     .name("causality")
-                    .numberOfBeds(8)
-                    .areaInSquareMeters(54.5f)
                     .build();
 
             wardService.save(maternityWard);
