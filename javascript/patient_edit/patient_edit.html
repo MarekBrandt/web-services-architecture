@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Simple hospital application"/>
+    <meta name="keywords" content="hospital"/>
+    <meta name="author" content="Marek Brandt"/>
+    <title>Hospital</title>
+    <link rel="stylesheet" href="../styles.css"/>
+    <link rel="stylesheet" href="patient_edit.css"/>
+    <script src="../script.js" defer="defer"></script>
+    <script type="module" src="patient_edit.js" defer="defer"></script>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Hospital</h1>
+    </header>
+
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="../index.html">main</a></li>
+            <li><a href="../ward_list/ward_list.html">wards</a></li>
+        </ul>
+    </nav>
+
+    <section class="main-section">
+        <article class="text--justified">
+            <header><h2>Edit patient info</h2></header>
+            <form class="character__form" id="infoForm">
+                <label for="firstName">First name:</label>
+                <input class="ui-control ui-input" id="firstName" name="firstName"/>
+                <label for="lastName">Last name:</label>
+                <input class="ui-control ui-input" id="lastName" name="lastName"/>
+                <input class="ui-control ui-button" type="submit" name="Update"/>
+            </form>
+        </article>
+    </section>
+
+
+
+    <footer class="footer">
+        <p>Copyright &copy; 2022, Marek Brandt</p>
+    </footer>
+</div>
+</body>
+</html>
+

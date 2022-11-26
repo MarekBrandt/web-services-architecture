@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Simple hospital application"/>
+    <meta name="keywords" content="hospital"/>
+    <meta name="author" content="Marek Brandt"/>
+    <title>Hospital</title>
+    <link rel="stylesheet" href="../styles.css"/>
+    <script src="../script.js" defer="defer"></script>
+    <script type="module" src="ward_list_script.js" defer="defer"></script>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <h1>Hospital</h1>
+    </header>
+
+    <nav class="navigation-bar">
+        <ul>
+            <li><a href="../index.html">main</a></li>
+            <li><a href="ward_list.html">wards</a></li>
+        </ul>
+    </nav>
+
+    <section class="main-section">
+        <article class="text--justified">
+            <header><h2>Wards</h2></header>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>view</th>
+                    <th>edit</th>
+                    <th>delete</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                <tr>
+                    <td>name</td>
+                    <td><a href="#">view</a></td>
+                    <td>
+                        <button class="ui-button ui-control">delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+
+    </section>
+
+    <footer class="footer">
+        <p>Copyright &copy; 2022, Marek Brandt</p>
+    </footer>
+</div>
+</body>
+</html>
+
