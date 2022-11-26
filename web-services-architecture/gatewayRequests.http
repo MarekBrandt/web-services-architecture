@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/api/wards/maternity
+GET http://localhost:8080/api/wards/1
 Accept: application/json
 
 ###
@@ -16,7 +16,7 @@ GET http://localhost:8080/api/wards
 Accept: application/json
 
 ###
-GET http://localhost:8080/api/patients/53542
+GET http://localhost:8080/api/patients/11111
 Accept: application/json
 
 ###
@@ -31,34 +31,35 @@ Content-Type: application/json
   "firstName": "Borys",
   "lastName": "Drwalski",
   "age": 33,
-  "ward": "causality"
+  "ward": "3"
 }
 
 ###
 
-GET http://localhost:8080/api/wards/maternity/patients
+GET http://localhost:8080/api/wards/1/patients
 Accept: application/json
 
 ###
 
-POST http://localhost:8080/api/wards/maternity/patients
+POST http://localhost:8080/api/wards/1/patients
 Content-Type: application/json
 
 {"pesel": "11111",
   "firstName": "Andrzej",
   "lastName": "Litewski",
   "age": 11,
-  "ward": "mater"
+  "ward": "12"
 }
 
 ###
-DELETE localhost:8080/api/wards/maternity/patients/11111
+DELETE localhost:8080/api/wards/1/patients/11111
 ###
 
-PUT localhost:8080/api/wards/maternity
+PUT localhost:8080/api/wards/1
 Content-Type: application/json
 
 {
+  "name": "maternity2",
   "numberOfBeds": 100,
   "areaInSquareMeters": 300
 }
@@ -67,12 +68,12 @@ Content-Type: application/json
 DELETE localhost:8080/api/patients/0123
 
 ###
-DELETE localhost:8080/api/wards/maternity
+DELETE localhost:8080/api/wards/1
 
 ###
-GET localhost:8080/api/wards/general/patients
+GET localhost:8080/api/wards/2/patients
 
 ###
-DELETE localhost:8080/api/wards/general/patients/4567
+DELETE localhost:8080/api/wards/2/patients/4567
 
 
