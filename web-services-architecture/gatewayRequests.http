@@ -9,6 +9,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/api/wards/1
+
 Accept: application/json
 
 ###
@@ -17,6 +18,7 @@ Accept: application/json
 
 ###
 GET http://localhost:8080/api/patients/11111
+
 Accept: application/json
 
 ###
@@ -35,13 +37,14 @@ Content-Type: application/json
 }
 
 ###
-
 GET http://localhost:8080/api/wards/1/patients
+
 Accept: application/json
 
 ###
 
 POST http://localhost:8080/api/wards/1/patients
+
 Content-Type: application/json
 
 {"pesel": "11111",
